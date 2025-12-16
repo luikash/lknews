@@ -2,7 +2,7 @@ async function setup(id) {
     let req = await fetch("info.json");
     let data = await req.json();
 
-    req = await fetch(data.news_source + "articles/" + id + ".json");
+    req = await fetch(data.news_source + "articles/" + id + ".json", {"cache": "no-cache"});
     if (!req.ok) {
         document.getElementById("headline").textContent = `Failed to load article "${id}"`;
         return;

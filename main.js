@@ -30,7 +30,7 @@ async function load_first() {
     let req = await fetch("info.json");
     let data = await req.json();
 
-    req = await fetch(data.news_source + "news.json");
+    req = await fetch(data.news_source + "news.json", {"cache": "no-cache"});
     data = await req.json();
     let keys = Object.keys(data);
 
