@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LKNews Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <header>
+        <h1>LKNews Admin Panel</h1>
+    </header>
+    <main>
+        <input id="admin_key" placeholder="Enter Admin Key" type="password">
+        <button onclick="save_admin_key()" style="width: 50px;">Save</button>
+        <button onclick="clear_admin_key()" style="width: 50px;">Clear</button>
+        <br><br>
+        <button id="show_publish_tab" onclick="show_publish_tab()" style="width: 70px;">[Publish]</button>
+        <button id="show_manage_tab" onclick="show_manage_tab()" style="width: 70px;">Manage</button>
+        <br><br>
+        <span id="publish_tab">
+            <input id="input_title" placeholder="Enter Title" type="text">
+            <br><br>
+            <textarea id="input_content" placeholder="Enter Markdown Article" rows="30" cols="60"></textarea>
+            <br><br>
+            <button onclick="save_content()">Save</button>
+            <button onclick="clear_content()">Clear</button>
+            <button onclick="preview_content()">Preview</button>
+            <button id="publish_button" onclick="publish_content()">Publish</button>
+            <span id="publish_result" hidden></span>
+        </span>
+        <span id="manage_tab" hidden>
+            Hallo
+        </span>
+        <br><br>
+        <a href="./">&lt; Home</a>
+        <script src="admin.js"></script>
+    </main>
+</body>
+</html>
