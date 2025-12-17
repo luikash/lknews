@@ -27,11 +27,18 @@
             <button onclick="preview_content()">Preview</button>
             <button id="publish_button" onclick="publish_content()">Publish</button>
             <span id="publish_result" hidden></span>
+            <br>
         </span>
         <span id="manage_tab" hidden>
-            Hallo
+            <span id="recent"></span>
+            <span id="load_more" hidden>
+                <br>
+                <button id="load_more_button" onclick="load_more()">More</button>
+                <button id="close_more_button" onclick="close_more()" hidden>Close</button>
+                <br>
+            </span>
         </span>
-        <br><br>
+        <br>
         <a href="./">&lt; Home</a>
         <script src="admin.js"></script>
     </main>
