@@ -20,16 +20,13 @@ const manage_tab = document.getElementById("manage_tab");
 const publish_tab_button = document.getElementById("show_publish_tab");
 const manage_tab_button = document.getElementById("show_manage_tab");
 
-const url = new URL(window.location.href);
-
 function show_publish_tab() {
     manage_tab_button.textContent = "Manage";
     publish_tab_button.textContent = "[Publish]";
     manage_tab.hidden = true;
     publish_tab.hidden = false;
 
-    url.searchParams.delete("manage");
-    window.history.replaceState({}, '', url);
+    localStorage.removeItem("manage-tab");
 }
 
 function show_manage_tab() {
@@ -38,11 +35,10 @@ function show_manage_tab() {
     publish_tab.hidden = true;
     manage_tab.hidden = false;
 
-    url.searchParams.set("manage", "true");
-    window.history.replaceState({}, '', url);
+    localStorage.setItem("manage-tab", "true")
 }
 
-if (url.searchParams.get("manage") == "true") {
+if (localStorage.getItem("manage-tab") == "true") {
     show_manage_tab();
 }
 
@@ -188,7 +184,7 @@ function load_more(isFirst) {
         date.textContent += " " + v.date + " - ";
         item.appendChild(date);
         const ref = document.createElement("a");
-        ref.href = "view.html?id=" + key;
+        ref.href = "view.html?manage=true&id=" + key;
         ref.textContent = v.title;
         item.appendChild(ref);
         item.appendChild(document.createElement("br"));

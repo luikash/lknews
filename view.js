@@ -12,7 +12,7 @@ function get_date() {
     return `${month}/${day}/${year}`
 }
 
-async function setup(id, isPreview) {
+async function setup(id, isPreview, isManage) {
     if (isPreview) {
         const publish_title = localStorage.getItem("publish_title");
         const publish_content = localStorage.getItem("publish_content");
@@ -23,9 +23,6 @@ async function setup(id, isPreview) {
 
         const converter = new showdown.Converter();
         document.getElementById("content").innerHTML = converter.makeHtml(publish_content);
-        
-        document.getElementById("homeref").hidden = true;
-        document.getElementById("backref").hidden = false;
     } else {
         let req = await fetch("info.json");
         let data = await req.json();
@@ -44,10 +41,15 @@ async function setup(id, isPreview) {
         const converter = new showdown.Converter();
         document.getElementById("content").innerHTML = converter.makeHtml(data.content);
     }
+    if (isPreview || isManage) {
+        document.getElementById("homeref").hidden = true;
+        document.getElementById("backref").hidden = false;
+    }
 }
 
 const queryStr = window.location.search;
 const urlParams = new URLSearchParams(queryStr);
 const id = urlParams.get("id");
 const isPreview = urlParams.get("preview") == "true";
-setup(id, isPreview);
+const isManage = urlParams.get("manage") == "true";
+setup(id, isPreview, isManage);
